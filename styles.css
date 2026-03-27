@@ -657,6 +657,7 @@ section {
     background: linear-gradient(135deg, rgba(0, 240, 255, 0.04), transparent);
     opacity: 0;
     transition: opacity 0.3s;
+    pointer-events: none;
 }
 
 .stat-card:hover {
@@ -832,6 +833,7 @@ section {
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s cubic-bezier(.23, 1, .32, 1);
+    pointer-events: none;
 }
 
 .skill-cluster:hover {
@@ -908,6 +910,7 @@ section {
     background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.4s;
+    pointer-events: none;
 }
 
 .project-card:hover {
