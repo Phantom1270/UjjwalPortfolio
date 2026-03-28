@@ -1,13 +1,20 @@
 // ===== LOADER =====
 const loaderName = document.getElementById('loader-name');
-const name = 'Ujjwal Shukla';
-name.split('').forEach((ch, i) => {
-    const span = document.createElement('span');
-    span.className = 'loader-char';
-    span.textContent = ch === ' ' ? '\u00A0' : ch;
-    span.style.animationDelay = (i * 0.06) + 's';
-    if (i < 6) span.style.color = '#00f0ff';
-    loaderName.appendChild(span);
+const words = ['Ujjwal', 'Shukla'];
+let charIndex = 0;
+words.forEach((w, wi) => {
+    const wordSpan = document.createElement('span');
+    wordSpan.className = 'loader-word';
+    w.split('').forEach(ch => {
+        const span = document.createElement('span');
+        span.className = 'loader-char';
+        span.textContent = ch;
+        span.style.animationDelay = (charIndex * 0.06) + 's';
+        if (wi === 0) span.style.color = '#00f0ff';
+        wordSpan.appendChild(span);
+        charIndex++;
+    });
+    loaderName.appendChild(wordSpan);
 });
 setTimeout(() => {
     document.getElementById('loader').classList.add('hidden');
@@ -38,6 +45,55 @@ const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 50);
 });
+
+// ===== MOBILE NAV =====
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+if (hamburger && navLinks) {
+    function openMobileMenu() {
+        navLinks.classList.add('active');
+        hamburger.classList.add('is-active');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+    }
+
+    function closeMobileMenu() {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('is-active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+
+    // Toggle menu
+    hamburger.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Swipe to dismiss
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    navLinks.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    navLinks.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX - touchStartX > 50) {
+            closeMobileMenu(); // Swipe right
+        }
+    }, { passive: true });
+}
 
 // ===== HERO CANVAS =====
 (function () {
@@ -181,12 +237,14 @@ if (quoteSection) {
 
 // ===== COUNTER ANIMATION =====
 function animateCounter(el) {
-    const target = parseInt(el.getAttribute('data-target'));
+    const targetStr = el.getAttribute('data-target');
+    const target = parseFloat(targetStr);
+    const isFloat = targetStr.includes('.');
     let count = 0;
     const step = target / 40;
     const interval = setInterval(() => {
         count = Math.min(count + step, target);
-        el.textContent = Math.floor(count);
+        el.textContent = isFloat ? count.toFixed(1) : Math.floor(count);
         if (count >= target) clearInterval(interval);
     }, 30);
 }
@@ -197,9 +255,9 @@ const counterObs = new IntersectionObserver(entries => {
             counterObs.unobserve(e.target);
         }
     });
-}, { threshold: 0.3 });
-const aboutSection = document.getElementById('about');
-if (aboutSection) counterObs.observe(aboutSection);
+}, { threshold: 0.1 });
+const aboutStats = document.querySelector('.about-stats');
+if (aboutStats) counterObs.observe(aboutStats);
 
 // ===== CONTACT FORM — opens mailto with prefilled content =====
 function handleSubmit() {
