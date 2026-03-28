@@ -95,87 +95,299 @@ if (hamburger && navLinks) {
     }, { passive: true });
 }
 
-// ===== HERO CANVAS =====
-(function () {
-    const c = document.getElementById('hero-canvas');
-    const ctx = c.getContext('2d');
-    let W, H, particles = [];
-    function resize() {
-        W = c.width = c.offsetWidth;
-        H = c.height = c.offsetHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-    for (let i = 0; i < 120; i++) {
-        particles.push({
-            x: Math.random() * W,
-            y: Math.random() * H,
-            vx: (Math.random() - 0.5) * 0.3,
-            vy: (Math.random() - 0.5) * 0.3,
-            r: Math.random() * 1.5 + 0.3,
-            a: Math.random(),
-            col: Math.random() > 0.5 ? '#00f0ff' : '#7b2fff'
-        });
-    }
-    function draw() {
-        ctx.clearRect(0, 0, W, H);
-        particles.forEach(p => {
-            p.x += p.vx; p.y += p.vy;
-            if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-            if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = p.col;
-            ctx.globalAlpha = p.a * 0.8;
-            ctx.fill();
-        });
-        // Lines between close particles
-        ctx.globalAlpha = 1;
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const d = Math.sqrt(dx * dx + dy * dy);
-                if (d < 100) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = '#00f0ff';
-                    ctx.globalAlpha = (1 - d / 100) * 0.15;
-                    ctx.lineWidth = 0.5;
-                    ctx.stroke();
-                }
-            }
-        }
-        ctx.globalAlpha = 1;
-        requestAnimationFrame(draw);
-    }
-    draw();
-})();
+// ===== THREE.JS BACKGROUND =====
+(function initThreeJS() {
+    const canvas = document.getElementById('bg-canvas');
+    if (!canvas || !window.THREE) return;
 
-// ===== QUOTE CANVAS =====
-(function () {
-    const c = document.getElementById('quote-canvas');
-    if (!c) return;
-    const ctx = c.getContext('2d');
-    let W, H, t = 0;
-    function resize() { W = c.width = c.offsetWidth; H = c.height = c.offsetHeight; }
-    resize(); window.addEventListener('resize', resize);
-    function draw() {
-        ctx.clearRect(0, 0, W, H);
-        t += 0.005;
-        const grad = ctx.createRadialGradient(
-            W / 2 + Math.sin(t) * 100, H / 2 + Math.cos(t * 0.7) * 60, 0,
-            W / 2, H / 2, Math.max(W, H) * 0.7
-        );
-        grad.addColorStop(0, 'rgba(123,47,255,0.15)');
-        grad.addColorStop(0.5, 'rgba(0,240,255,0.05)');
-        grad.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, W, H);
-        requestAnimationFrame(draw);
+    // SCENE & SETUP
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+    scene.fog = new THREE.FogExp2(0x000000, 0.015);
+
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 15, 60);
+    camera.lookAt(0, 3, 0);
+
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+    // MATERIALS
+    // Procedural noise for desk imperfections
+    const noiseCvs = document.createElement('canvas');
+    noiseCvs.width = 512; noiseCvs.height = 512;
+    const nCtx = noiseCvs.getContext('2d');
+    nCtx.fillStyle = '#0a0a0a'; nCtx.fillRect(0,0,512,512);
+    for(let i=0; i<30000; i++) {
+        nCtx.fillStyle = Math.random() > 0.5 ? '#141414' : '#000000';
+        nCtx.fillRect(Math.random()*512, Math.random()*512, 2, 2);
     }
-    draw();
+    const noiseTex = new THREE.CanvasTexture(noiseCvs);
+    noiseTex.wrapS = THREE.RepeatWrapping; noiseTex.wrapT = THREE.RepeatWrapping;
+    noiseTex.repeat.set(6, 3);
+
+    const matGlossyBlack = new THREE.MeshStandardMaterial({ 
+        color: 0x050505, 
+        roughness: 0.12, 
+        metalness: 0.85,
+        bumpMap: noiseTex,
+        bumpScale: 0.003
+    });
+    const matCarbon = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.8, metalness: 0.3 });
+    const matAluminum = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, roughness: 0.3, metalness: 0.7 });
+    
+    // Smooth fade ground using a custom ShaderMaterial to make it perfectly fade away into darkness
+    const matGround = new THREE.MeshStandardMaterial({ color: 0x080808, roughness: 1.0, metalness: 0.0 });
+    
+    const setupGroup = new THREE.Group();
+    scene.add(setupGroup);
+
+    // 1. GROUND PATCH
+    const groundGeo = new THREE.PlaneGeometry(200, 200);
+    const ground = new THREE.Mesh(groundGeo, matGround);
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -4; 
+    ground.receiveShadow = true;
+    setupGroup.add(ground);
+
+    // 2. DESK
+    const deskTopGeo = new THREE.BoxGeometry(24, 0.5, 12);
+    const deskTop = new THREE.Mesh(deskTopGeo, matGlossyBlack);
+    deskTop.position.y = 0;
+    deskTop.castShadow = true;
+    deskTop.receiveShadow = true;
+    setupGroup.add(deskTop);
+
+    // Carbon fiber legs
+    const legGeo = new THREE.CylinderGeometry(0.3, 0.2, 4);
+    const legOffsets = [[-11, 5], [11, 5], [-11, -5], [11, -5]];
+    legOffsets.forEach(pos => {
+        const leg = new THREE.Mesh(legGeo, matCarbon);
+        leg.position.set(pos[0], -2.25, pos[1]);
+        leg.castShadow = true;
+        setupGroup.add(leg);
+    });
+
+    // 3. CURVED MONITOR
+    const monitorGroup = new THREE.Group();
+    monitorGroup.position.set(0, 0.25, -2);
+    setupGroup.add(monitorGroup);
+
+    // Stand
+    const standBaseGeo = new THREE.BoxGeometry(4, 0.2, 3);
+    const standBase = new THREE.Mesh(standBaseGeo, matAluminum);
+    standBase.position.set(0, 0.1, 0);
+    standBase.castShadow = true;
+    monitorGroup.add(standBase);
+
+    // Minimalist LED Ring for stand detailing
+    const ringGeo = new THREE.TorusGeometry(1, 0.05, 16, 64);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+    ringMesh.rotation.x = Math.PI / 2;
+    ringMesh.position.set(0, 0.2, 0);
+    monitorGroup.add(ringMesh);
+
+    const standNeckGeo = new THREE.CylinderGeometry(0.3, 0.4, 2);
+    const standNeck = new THREE.Mesh(standNeckGeo, matAluminum);
+    standNeck.position.set(0, 1.2, -0.5);
+    standNeck.rotation.x = Math.PI / 16;
+    standNeck.castShadow = true;
+    monitorGroup.add(standNeck);
+
+    // Curved Screen Setup
+    const radius = 25;
+    const curveWidth = Math.PI / 6; 
+    const height = 5.5;
+
+    const casingGeo = new THREE.CylinderGeometry(radius+0.2, radius+0.2, height+0.4, 64, 1, true, -curveWidth/2, curveWidth);
+    const casing = new THREE.Mesh(casingGeo, matCarbon);
+    casing.position.set(0, 2.5, -radius + 1);
+    casing.castShadow = true;
+    monitorGroup.add(casing);
+
+    // Detailing: Minimalist Keyboard & Mouse
+    const kbGeo = new THREE.BoxGeometry(6, 0.1, 2);
+    const kbMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.9, metalness: 0.1 });
+    const keyboard = new THREE.Mesh(kbGeo, kbMat);
+    keyboard.position.set(-1, 0.3, 2); 
+    keyboard.rotation.y = Math.PI/32;
+    keyboard.castShadow = true;
+    setupGroup.add(keyboard);
+
+    const mouseGeo = new THREE.BoxGeometry(1.2, 0.15, 1.8);
+    const mousePiece = new THREE.Mesh(mouseGeo, matGlossyBlack);
+    mousePiece.position.set(4, 0.32, 2.5); 
+    mousePiece.rotation.y = -Math.PI/16;
+    mousePiece.castShadow = true;
+    setupGroup.add(mousePiece);
+
+    // Generate IDE Code Texture
+    const cvs = document.createElement('canvas');
+    cvs.width = 1024;
+    cvs.height = 512;
+    const ctx = cvs.getContext('2d');
+    
+    ctx.fillStyle = '#0a0a0e';
+    ctx.fillRect(0, 0, 1024, 512);
+    
+    ctx.font = '24px monospace';
+    ctx.fillStyle = '#00FFFF'; // Cyan
+    ctx.shadowColor = '#00FFFF';
+    ctx.shadowBlur = 8;
+    const codeLines = [
+        "function bootSequence() {",
+        "  system.initialize();",
+        "  const modules = Object.keys(core);",
+        "  modules.forEach(m => mount(m));",
+        "  while(network.status !== 'CONNECTED') {",
+        "    retryConnection();",
+        "  }",
+        "  console.log('Environment Online.');",
+        "}",
+        "",
+        "bootSequence();"
+    ];
+    codeLines.forEach((line, i) => {
+        ctx.fillText(line, 50, 60 + i * 36);
+    });
+    
+    // Sidebar to look like VSCode
+    ctx.fillStyle = '#11111a';
+    ctx.shadowBlur = 0;
+    ctx.fillRect(0, 0, 40, 512);
+    ctx.fillStyle = '#333344';
+    ctx.fillRect(15, 20, 10, 10);
+    ctx.fillRect(15, 45, 10, 10);
+    ctx.fillRect(15, 70, 10, 10);
+
+    const codeTex = new THREE.CanvasTexture(cvs);
+    codeTex.wrapS = THREE.RepeatWrapping;
+    codeTex.repeat.set(-1, 1);
+    codeTex.offset.set(1, 0);
+
+    const screenGeo = new THREE.CylinderGeometry(radius, radius, height, 64, 1, true, -curveWidth/2, curveWidth);
+    const screenMat = new THREE.MeshStandardMaterial({
+        map: codeTex,
+        emissiveMap: codeTex,
+        emissive: 0xffffff,
+        emissiveIntensity: 0.6,
+        roughness: 0.2,
+        side: THREE.DoubleSide
+    });
+
+    // Dynamically inject the local preview screenshot!
+    new THREE.TextureLoader().load('preview.png', (loadedTex) => {
+        loadedTex.wrapS = THREE.RepeatWrapping;
+        loadedTex.repeat.set(-1, 1);
+        loadedTex.offset.set(1, 0);
+        screenMat.map = loadedTex;
+        screenMat.emissiveMap = loadedTex;
+        screenMat.emissiveIntensity = 1.2; // Boost since site is dark
+        screenMat.needsUpdate = true;
+    });
+
+    const screen = new THREE.Mesh(screenGeo, screenMat);
+    screen.position.set(0, 2.5, -radius + 1.1); 
+    monitorGroup.add(screen);
+
+    // 4. LIGHTING - THE HERO
+    const lampArmGeo = new THREE.CylinderGeometry(0.1, 0.2, 23);
+    const lampArm = new THREE.Mesh(lampArmGeo, matCarbon);
+    lampArm.position.set(-4, 10, -2);
+    lampArm.lookAt(0, 15, 4);
+    lampArm.rotateX(Math.PI/2);
+    lampArm.castShadow = true;
+    setupGroup.add(lampArm);
+    
+    // point hood towards the keyboard area
+    const targetObj = new THREE.Object3D();
+    targetObj.position.set(0, 0, 0);
+    setupGroup.add(targetObj);
+
+    const hoodGeo = new THREE.CylinderGeometry(0.3, 1.2, 1.5, 32); 
+    const hood = new THREE.Mesh(hoodGeo, matCarbon);
+    hood.position.set(0, 15, 4);
+    hood.lookAt(targetObj.position);
+    hood.rotateX(-Math.PI/2);
+    setupGroup.add(hood);
+
+    const spotLight = new THREE.SpotLight(0xf4f8ff, 180, 100, Math.PI / 6.5, 0.9, 1.8);
+    spotLight.position.set(0, 15, 4);
+    spotLight.target = targetObj;
+    
+    spotLight.castShadow = true;
+    spotLight.shadow.mapSize.width = 1024;
+    spotLight.shadow.mapSize.height = 1024;
+    setupGroup.add(spotLight);
+
+    // Volumetric Fake Cone
+    const volGeo = new THREE.CylinderGeometry(0.2, 5, 16, 32, 1, true);
+    const volMat = new THREE.MeshBasicMaterial({ 
+        color: 0xffffff, 
+        transparent: true, 
+        opacity: 0.04, 
+        blending: THREE.AdditiveBlending, 
+        depthWrite: false,
+        side: THREE.DoubleSide
+    });
+    const volCone = new THREE.Mesh(volGeo, volMat);
+    volCone.position.set(0, 7.5, 2); // perfectly between 15,4 and 0,0
+    volCone.lookAt(targetObj.position);
+    volCone.rotateX(-Math.PI/2);
+    setupGroup.add(volCone);
+
+    // Screen Glow - Wide PointLights array faking an ultra-wide continuous specular reflection on the desk
+    [-8, -4, 0, 4, 8].forEach(xOffset => {
+        const screenGlow = new THREE.PointLight(0x00f0ff, 6, 25);
+        screenGlow.position.set(xOffset, 3.5, 1.5); 
+        setupGroup.add(screenGlow);
+    });
+
+    // Dim Ambient Light
+    scene.add(new THREE.AmbientLight(0x111111, 0.5));
+
+    // Interaction & Animation
+    let mouseX = 0;
+    let mouseY = 0;
+    let windowHalfX = window.innerWidth / 2;
+    let windowHalfY = window.innerHeight / 2;
+
+    document.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX - windowHalfX);
+        mouseY = (event.clientY - windowHalfY);
+    });
+
+    window.addEventListener('resize', () => {
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    let time = 0;
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.01;
+
+        // Subtle floating of the entire setup
+        setupGroup.position.y = Math.sin(time) * 0.3;
+
+        // Mouse Parallax - horizontal only
+        const targetX = mouseX * 0.02;
+        
+        camera.position.x += (targetX - camera.position.x) * 0.05;
+        camera.position.y += (15 - camera.position.y) * 0.05; // Lock strictly to 15 height
+        camera.lookAt(0, 3, 0);
+
+        renderer.render(scene, camera);
+    }
+    
+    animate();
 })();
 
 // ===== TYPEWRITER =====
