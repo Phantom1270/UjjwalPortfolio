@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,8 +7,9 @@
     <title>Ujjwal Shukla — AI/ML Engineer &amp; Builder</title>
     <meta name="description" content="Ujjwal Shukla — Second-year CS student at VIT Chennai specializing in AI/ML, Full Stack Development, and Data Science. Builder of real products.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800;900&family=Bangers&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -48,11 +49,37 @@
 
     <!-- HERO -->
     <section id="hero">
+        <span class="deco-shape" aria-hidden="true" style="top:12%;left:4%;font-size:2.2rem;color:#FF3AF2;animation:wiggle 2s ease-in-out infinite">✦</span>
+        <span class="deco-shape" aria-hidden="true" style="top:20%;right:6%;font-size:1.6rem;color:#FFE600;animation:float 6s ease-in-out infinite">⚡</span>
+        <span class="deco-shape" aria-hidden="true" style="bottom:22%;left:8%;font-size:3rem;color:#00F5D4;animation:float-reverse 7s ease-in-out infinite">✨</span>
+        <span class="deco-shape" aria-hidden="true" style="bottom:30%;right:12%;font-size:1.8rem;color:#7B2FFF;animation:bounce-subtle 3s ease-in-out infinite">◆</span>
+        <span class="deco-shape" aria-hidden="true" style="top:55%;left:2%;font-size:1.4rem;color:#FF6B35;animation:float-slow 8s ease-in-out infinite">★</span>
+        <span class="deco-shape" aria-hidden="true" style="top:8%;right:30%;font-size:1.2rem;color:#FF3AF2;animation:spin-slow 20s linear infinite">◉</span>
         <!-- 3D BACKGROUND -->
-        <canvas id="bg-canvas"></canvas>
+        <!-- CSS MAXIMALISM BACKGROUND -->
+        <div class="hero-bg" aria-hidden="true">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+            <div class="hero-orb hero-orb-4"></div>
+            <div class="hero-orb hero-orb-5"></div>
+            <div class="hero-grid"></div>
+            <div class="hero-ring hero-ring-1"></div>
+            <div class="hero-ring hero-ring-2"></div>
+            <div class="hero-ring hero-ring-3"></div>
+            <div class="hero-corner hero-corner-tl"></div>
+            <div class="hero-corner hero-corner-tr"></div>
+            <div class="hero-corner hero-corner-bl"></div>
+            <div class="hero-corner hero-corner-br"></div>
+            <div class="hero-glitch-line" style="width:45%;top:28%;animation-delay:0s"></div>
+            <div class="hero-glitch-line" style="width:60%;top:55%;animation-delay:1.8s"></div>
+            <div class="hero-glitch-line" style="width:35%;top:75%;animation-delay:3.2s"></div>
+            <div class="hero-noise"></div>
+            <div class="hero-scanlines"></div>
+        </div>
         <div class="hero-inner">
             <div>
-                <div class="hero-tag reveal">// Second-year at VIT Chennai · Batch of 2028</div>
+                <div class="hero-tag reveal">// Third-Year · VIT Chennai · Batch of 2028</div>
                 <h1 class="hero-name">
                     <span>Ujjwal</span>
                     <span class="line2">Shukla</span>
@@ -93,8 +120,8 @@
                         <span class="kw">class</span> <span class="fn">Ujjwal</span>:<br>
                         &nbsp;&nbsp;name = <span class="str">"Ujjwal Shukla"</span><br>
                         &nbsp;&nbsp;uni = <span class="str">"VIT Chennai"</span><br>
-                        &nbsp;&nbsp;cgpa = <span class="num">8.90</span><br>
-                        &nbsp;&nbsp;batch = <span class="num">2028</span><br>
+                        &nbsp;&nbsp;cgpa = <span class=num>8.98</span><br>
+                        &nbsp;&nbsp;year = <span class=str>&quot;Third-Year&quot;</span><br>
                         <br>
                         &nbsp;&nbsp;stack = [<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"Python"</span>,<br>
@@ -107,7 +134,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="str">"real
                             products"</span><br>
                         <br>
-                        <span class="cm"># Currently: building 🚀</span>
+                        <span class="cm"># National Hackathon Winner 🏆</span>
                     </div>
                     <div class="avatar-glow"></div>
                 </div>
@@ -121,14 +148,16 @@
 
     <!-- ABOUT -->
     <section id="about">
+        <span class="deco-shape" aria-hidden="true" style="top:8%;right:3%;font-size:2.8rem;color:#FF3AF2;animation:float 7s ease-in-out infinite">🚀</span>
+        <span class="deco-shape" aria-hidden="true" style="top:30%;left:1%;font-size:2rem;color:#FFE600;animation:wiggle 1.5s ease-in-out infinite">✦</span>
+        <span class="deco-shape" aria-hidden="true" style="bottom:15%;right:5%;font-size:2.4rem;color:#00F5D4;animation:bounce-subtle 2.5s ease-in-out infinite">💫</span>
+        <span class="deco-shape" aria-hidden="true" style="bottom:40%;left:3%;font-size:1.5rem;color:#7B2FFF;animation:float-reverse 9s ease-in-out infinite">★</span>
         <div class="about-watermark">ABOUT</div>
         <div class="section-label reveal">about me</div>
         <div class="section-title reveal">The Story<br>So Far</div>
         <div class="about-grid">
             <div class="about-text reveal">
-                <p>Started with <strong>C and C++</strong> — learning to think in loops, memory, and logic. Then Python.
-                    Then JavaScript. Then the realization that code could do something deeply interesting:
-                    <strong>learn.</strong>
+                <p>Started with <strong>C and C++</strong> — loops, memory, logic. Then Python. Then the realisation that code could do something deeply interesting: <strong>learn.</strong> That curiosity turned into a career path.
                 </p>
                 <p>I dove into <strong>AI and Machine Learning</strong> and haven't looked back. I've cleaned datasets
                     at scale, built ML models, explored NLP and OCR, and published documented analyses. I also work as a
@@ -142,24 +171,24 @@
                 <div class="about-stats">
                     <div class="stat-card reveal reveal-delay-1">
                         <div class="stat-icon">🎯</div>
-                        <div class="stat-num" data-target="8.9">0</div>
+                        <div class="stat-num" data-target=8.98>0</div>
                         <div class="stat-label">CGPA</div>
                     </div>
                     <div class="stat-card reveal reveal-delay-2">
                         <div class="stat-icon">📊</div>
                         <div class="stat-num" data-target="3">0</div>
-                        <div class="stat-label">Large-Scale Data Projects</div>
+                        <div class=stat-label>Projects Shipped</div>
                     </div>
                     <div class="stat-card reveal reveal-delay-3">
                         <div class="stat-icon">🚀</div>
                         <div class="stat-num" data-target="1">0</div>
-                        <div class="stat-label">Live Commercial Product</div>
+                        <div class=stat-label>National Hackathon Won</div>
                     </div>
                     <div class="stat-card reveal reveal-delay-4">
                         <div class="stat-icon">⚡</div>
-                        <div class="stat-num" data-target="2">0</div>
+                        <div class="stat-num" data-target=3>0</div>
                         <div class="stat-num" style="font-size:1.5rem">+</div>
-                        <div class="stat-label">Years Coding</div>
+                        <div class=stat-label>Years Coding</div>
                     </div>
                 </div>
             </div>
@@ -210,236 +239,126 @@
 
     <!-- SKILLS -->
     <section id="skills">
+        <span class="deco-shape" aria-hidden="true" style="top:6%;right:4%;font-size:3rem;color:#FFE600;animation:wiggle 2s ease-in-out infinite">⚡</span>
+        <span class="deco-shape" aria-hidden="true" style="top:50%;left:1%;font-size:2rem;color:#FF3AF2;animation:float-slow 10s ease-in-out infinite">◆</span>
+        <span class="deco-shape" aria-hidden="true" style="bottom:10%;right:2%;font-size:2.5rem;color:#00F5D4;animation:bounce-subtle 3.5s ease-in-out infinite">✨</span>
         <div class="section-label reveal">expertise</div>
         <div class="section-title reveal">What I<br>Work With</div>
         <div class="skills-grid">
             <div class="skill-cluster reveal reveal-delay-1">
-                <div class="cluster-icon">💻</div>
-                <div class="cluster-title">Languages</div>
+                <div class="cluster-icon">📊</div>
+                <div class="cluster-title">Data Analysis &amp; Statistics</div>
                 <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">JavaScript (ES6+)</span>
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">C</span>
-                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">EDA</span><span class="skill-tag">Data Cleaning</span><span class="skill-tag">Outlier Detection</span><span class="skill-tag">SMOTE</span><span class="skill-tag">Hypothesis Testing</span><span class="skill-tag">NumPy</span><span class="skill-tag">Pandas</span><span class="skill-tag">SQL</span><span class="skill-tag">Matplotlib</span><span class="skill-tag">Seaborn</span><span class="skill-tag">Plotly</span>
                 </div>
             </div>
             <div class="skill-cluster reveal reveal-delay-2">
                 <div class="cluster-icon">🧠</div>
-                <div class="cluster-title">AI / Machine Learning</div>
+                <div class="cluster-title">Machine Learning</div>
                 <div class="skill-tags">
-                    <span class="skill-tag">Linear Regression</span>
-                    <span class="skill-tag">Ridge &amp; Lasso</span>
-                    <span class="skill-tag">Classification</span>
-                    <span class="skill-tag">NLP Fundamentals</span>
-                    <span class="skill-tag">Deep Learning</span>
-                    <span class="skill-tag">EDA</span>
+                    <span class="skill-tag">Linear/Logistic Regression</span><span class="skill-tag">SVM</span><span class="skill-tag">KNN</span><span class="skill-tag">Naive Bayes</span><span class="skill-tag">Random Forest</span><span class="skill-tag">XGBoost</span><span class="skill-tag">AdaBoost</span><span class="skill-tag">Gradient Boosting</span><span class="skill-tag">K-Means</span><span class="skill-tag">DBSCAN</span><span class="skill-tag">PCA</span><span class="skill-tag">GridSearchCV</span>
                 </div>
             </div>
             <div class="skill-cluster reveal reveal-delay-3">
-                <div class="cluster-icon">📊</div>
-                <div class="cluster-title">Data &amp; Analysis</div>
+                <div class="cluster-icon">🔮</div>
+                <div class="cluster-title">Deep Learning &amp; NLP</div>
                 <div class="skill-tags">
-                    <span class="skill-tag">Pandas</span>
-                    <span class="skill-tag">NumPy</span>
-                    <span class="skill-tag">Matplotlib</span>
-                    <span class="skill-tag">Seaborn</span>
-                    <span class="skill-tag">Data Cleaning</span>
-                    <span class="skill-tag">Large-Scale EDA</span>
+                    <span class="skill-tag">ANN / CNN / RNN</span><span class="skill-tag">LSTM</span><span class="skill-tag">Transformers</span><span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">Keras</span><span class="skill-tag">NLTK</span><span class="skill-tag">SpaCy</span><span class="skill-tag">TF-IDF</span><span class="skill-tag">Word2Vec</span>
                 </div>
             </div>
             <div class="skill-cluster reveal reveal-delay-4">
-                <div class="cluster-icon">🌐</div>
-                <div class="cluster-title">Full Stack &amp; Web</div>
+                <div class="cluster-icon">🚀</div>
+                <div class="cluster-title">MLOps &amp; Deployment</div>
                 <div class="skill-tags">
-                    <span class="skill-tag">React.js</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">Express.js</span>
-                    <span class="skill-tag">HTML5 &amp; CSS3</span>
-                    <span class="skill-tag">REST APIs</span>
-                    <span class="skill-tag">UI/UX Design</span>
+                    <span class="skill-tag">Docker</span><span class="skill-tag">Flask</span><span class="skill-tag">FastAPI</span><span class="skill-tag">AWS EC2</span><span class="skill-tag">AWS Elastic Beanstalk</span><span class="skill-tag">GitHub Actions</span><span class="skill-tag">MLflow</span><span class="skill-tag">DVC</span><span class="skill-tag">Streamlit</span>
                 </div>
             </div>
             <div class="skill-cluster reveal reveal-delay-1">
-                <div class="cluster-icon">🗄️</div>
-                <div class="cluster-title">Databases &amp; Tools</div>
+                <div class="cluster-icon">🌐</div>
+                <div class="cluster-title">Web Development</div>
                 <div class="skill-tags">
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">Jupyter</span>
-                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">React.js</span><span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span><span class="skill-tag">REST APIs</span><span class="skill-tag">HTML5 &amp; CSS3</span>
                 </div>
             </div>
-            <div class="skill-cluster reveal reveal-delay-2"
-                style="border-color: rgba(0,240,255,0.15); background: linear-gradient(135deg,rgba(0,240,255,0.03),var(--surface2));">
-                <div class="cluster-icon">📈</div>
-                <div class="cluster-title">Published Work</div>
+            <div class="skill-cluster reveal reveal-delay-2">
+                <div class="cluster-icon">⚡</div>
+                <div class="cluster-title">Languages &amp; Tools</div>
                 <div class="skill-tags">
-                    <span class="skill-tag">3 EDA Analyses</span>
-                    <span class="skill-tag">Methodology Docs</span>
-                    <span class="skill-tag">SDLC</span>
-                    <span class="skill-tag">Problem Solving</span>
+                    <span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span><span class="skill-tag">SQL</span><span class="skill-tag">Git &amp; GitHub</span><span class="skill-tag">Jupyter</span><span class="skill-tag">VS Code</span>
                 </div>
             </div>
         </div>
     </section>
 
+
+
     <!-- PROJECTS -->
     <section id="projects">
+        <span class="deco-shape" aria-hidden="true" style="top:5%;left:2%;font-size:2.5rem;color:#FF3AF2;animation:float 6s ease-in-out infinite">🌟</span>
+        <span class="deco-shape" aria-hidden="true" style="top:15%;right:3%;font-size:2rem;color:#FFE600;animation:wiggle 1.8s ease-in-out infinite">✦</span>
+        <span class="deco-shape" aria-hidden="true" style="bottom:8%;left:3%;font-size:2.2rem;color:#7B2FFF;animation:float-reverse 8s ease-in-out infinite">◉</span>
+        <span class="deco-shape" aria-hidden="true" style="bottom:20%;right:1%;font-size:1.8rem;color:#FF6B35;animation:bounce-subtle 2s ease-in-out infinite">★</span>
         <div class="section-label reveal">portfolio</div>
         <div class="section-title reveal">Things I've<br>Built</div>
         <div class="projects-scroll">
-            <!-- MedVigilant - Featured AI Project -->
+            <!-- Landroid - National Winner -->
             <div class="project-card featured reveal">
-                <div class="project-badge">
-                    <div class="live-dot"></div>LIVE · AI-POWERED
-                </div>
-                <div class="project-title">MedVigilant</div>
-                <p class="project-desc">AI Medical Safety Assistant that detects drug interactions, scans prescriptions
-                    via OCR, and performs basic skin-condition image triage. Powered by OpenFDA API and RxNorm.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">AI/ML</span>
-                    <span class="tech-tag">OpenFDA API</span>
-                    <span class="tech-tag">RxNorm</span>
-                    <span class="tech-tag">OCR</span>
-                    <span class="tech-tag">Python</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://hcaress.streamlit.app" target="_blank" rel="noopener noreferrer" class="project-link">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2" />
-                            <path d="M6 1c0 0-3 2-3 5s3 5 3 5M6 1c0 0 3 2 3 5s-3 5-3 5M1 6h10" stroke="currentColor"
-                                stroke-width="1.2" />
-                        </svg>
-                        Live Demo
-                    </a>
-                    <a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="project-link">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <path
-                                d="M6 .5C2.96.5.5 2.96.5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.92c-1.52.33-1.84-.73-1.84-.73-.25-.63-.61-.8-.61-.8-.5-.34.04-.33.04-.33.55.04.84.57.84.57.49.84 1.28.6 1.6.46.05-.36.19-.6.35-.74-1.21-.14-2.49-.61-2.49-2.71 0-.6.21-1.09.57-1.47-.06-.14-.25-.7.05-1.46 0 0 .47-.15 1.53.57.44-.12.92-.18 1.39-.18s.95.06 1.39.18c1.06-.72 1.53-.57 1.53-.57.3.76.11 1.32.05 1.46.36.38.57.87.57 1.47 0 2.11-1.28 2.57-2.5 2.71.2.17.37.51.37 1.02v1.52c0 .14.1.31.38.26C10.43 10.49 12 8.43 12 6 12 2.96 9.04.5 6 .5z"
-                                fill="currentColor" />
-                        </svg>
-                        GitHub
-                    </a>
-                </div>
+                <div class="project-badge" style="background:var(--tertiary);border-color:var(--accent);color:#0D0D1A"><div class="live-dot"></div>NATIONAL WINNER 🏆 · BIRDSCALE</div>
+                <div class="project-title">Landroid</div>
+                <p class="project-desc">Won the national Birdscale hackathon against 100+ teams across India. A full-stack AI/ML mobile platform for land health scoring — integrating Sentinel-2 NDVI satellite data, GIS metrics, and multiple external soil/terrain APIs into composite validation pipelines. Built the frontend data visualiser and map overlay components.</p>
+                <div class="project-tech"><span class="tech-tag">Computer Vision</span><span class="tech-tag">Sentinel-2 NDVI</span><span class="tech-tag">GIS</span><span class="tech-tag">REST APIs</span><span class="tech-tag">Python</span></div>
+                <div class="project-links"><a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="project-link">↗ GitHub</a></div>
             </div>
 
-            <!-- Smart Gym - Featured Commercial -->
+            <!-- Algerian Forest Fire Predictor -->
             <div class="project-card featured reveal reveal-delay-1">
-                <div class="project-badge">
-                    <div class="live-dot"></div>COMMERCIAL · DEPLOYED
-                </div>
-                <div class="project-title">Smart Gym Management</div>
-                <p class="project-desc">Full-stack gym management platform with membership tracking, admin CRUD
-                    operations, payment management, and reporting tools. Built with Node.js, Express and MongoDB —
-                    actively used commercially.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">Express.js</span>
-                    <span class="tech-tag">MongoDB</span>
-                    <span class="tech-tag">Full Stack</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="project-link">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <path
-                                d="M6 .5C2.96.5.5 2.96.5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.92c-1.52.33-1.84-.73-1.84-.73-.25-.63-.61-.8-.61-.8-.5-.34.04-.33.04-.33.55.04.84.57.84.57.49.84 1.28.6 1.6.46.05-.36.19-.6.35-.74-1.21-.14-2.49-.61-2.49-2.71 0-.6.21-1.09.57-1.47-.06-.14-.25-.7.05-1.46 0 0 .47-.15 1.53.57.44-.12.92-.18 1.39-.18s.95.06 1.39.18c1.06-.72 1.53-.57 1.53-.57.3.76.11 1.32.05 1.46.36.38.57.87.57 1.47 0 2.11-1.28 2.57-2.5 2.71.2.17.37.51.37 1.02v1.52c0 .14.1.31.38.26C10.43 10.49 12 8.43 12 6 12 2.96 9.04.5 6 .5z"
-                                fill="currentColor" />
-                        </svg>
-                        GitHub
-                    </a>
-                </div>
+                <div class="project-badge"><div class="live-dot"></div>LIVE · AWS ELASTIC BEANSTALK</div>
+                <div class="project-title">Algerian Forest Fire Predictor</div>
+                <p class="project-desc">In-depth EDA and feature engineering on a large meteorological dataset. Applied multiple ML algorithms achieving <strong style="color:var(--tertiary)">92% accuracy</strong>. Model serialised with Pickle and deployed as a live web app on AWS Elastic Beanstalk enabling real-time fire-risk predictions from user input.</p>
+                <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Pandas</span><span class="tech-tag">EDA</span><span class="tech-tag">AWS EB</span><span class="tech-tag">Pickle</span></div>
+                <div class="project-links"><a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="project-link">↗ GitHub</a></div>
+            </div>
+
+            <!-- LionScott -->
+            <div class="project-card featured reveal reveal-delay-2">
+                <div class="project-badge"><div class="live-dot"></div>COMMERCIAL · 800+ MEMBERS</div>
+                <div class="project-title">LionScott – Gym Platform</div>
+                <p class="project-desc">Full-stack gym management platform in live commercial production serving 800+ members. Designed and implemented the complete UI/UX and backend: member management, billing, integrated payment system, and full admin dashboard.</p>
+                <div class="project-tech"><span class="tech-tag">React.js</span><span class="tech-tag">Node.js</span><span class="tech-tag">Express.js</span><span class="tech-tag">Payment Integration</span><span class="tech-tag">Admin Dashboard</span></div>
+                <div class="project-links"><a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="project-link">↗ GitHub</a></div>
+            </div>
+
+            <!-- Hcare -->
+            <div class="project-card reveal reveal-delay-3">
+                <div class="project-title">Hcare – AI Medical Cabinet</div>
+                <p class="project-desc">Healthcare app on Streamlit that maintains a dynamic medical cabinet, auto-flags conflicting medication combinations by cross-referencing active ingredients, and integrates a Hugging Face OCR model for medicine identification and image-based disease prediction.</p>
+                <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Streamlit</span><span class="tech-tag">Hugging Face</span><span class="tech-tag">OCR</span><span class="tech-tag">Image Recognition</span></div>
+                <div class="project-links"><a href="https://hcaress.streamlit.app" target="_blank" rel="noopener noreferrer" class="project-link">↗ Live Demo</a><a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="project-link">↗ GitHub</a></div>
             </div>
 
             <!-- Wine EDA -->
-            <div class="project-card reveal reveal-delay-2">
-                <div class="project-title">Wine Dataset EDA</div>
-                <p class="project-desc">Deep-dive exploratory data analysis on the Wine dataset. Documented methodology,
-                    visualizations, and statistical findings — published as a live interactive report.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Pandas</span>
-                    <span class="tech-tag">Seaborn</span>
-                    <span class="tech-tag">Matplotlib</span>
-                    <span class="tech-tag">EDA</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://phantom1270.github.io/WineDatasetEDA/" target="_blank" rel="noopener noreferrer" class="project-link">↗ Live
-                        Report</a>
-                    <a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="project-link">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <path
-                                d="M6 .5C2.96.5.5 2.96.5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.92c-1.52.33-1.84-.73-1.84-.73-.25-.63-.61-.8-.61-.8-.5-.34.04-.33.04-.33.55.04.84.57.84.57.49.84 1.28.6 1.6.46.05-.36.19-.6.35-.74-1.21-.14-2.49-.61-2.49-2.71 0-.6.21-1.09.57-1.47-.06-.14-.25-.7.05-1.46 0 0 .47-.15 1.53.57.44-.12.92-.18 1.39-.18s.95.06 1.39.18c1.06-.72 1.53-.57 1.53-.57.3.76.11 1.32.05 1.46.36.38.57.87.57 1.47 0 2.11-1.28 2.57-2.5 2.71.2.17.37.51.37 1.02v1.52c0 .14.1.31.38.26C10.43 10.49 12 8.43 12 6 12 2.96 9.04.5 6 .5z"
-                                fill="currentColor" />
-                        </svg>
-                        GitHub
-                    </a>
-                </div>
-            </div>
-
-            <!-- Internshala Analyzer -->
-            <div class="project-card reveal reveal-delay-3">
-                <div class="project-title">Internshala Data Analyzer</div>
-                <p class="project-desc">Web scraper to collect Internshala internship listings, followed by ML model
-                    training after full data cleaning and preprocessing — enabling analysis and trend prediction.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Web Scraping</span>
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">scikit-learn</span>
-                    <span class="tech-tag">ML</span>
-                    <span class="tech-tag">Data Cleaning</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="project-link">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <path
-                                d="M6 .5C2.96.5.5 2.96.5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.92c-1.52.33-1.84-.73-1.84-.73-.25-.63-.61-.8-.61-.8-.5-.34.04-.33.04-.33.55.04.84.57.84.57.49.84 1.28.6 1.6.46.05-.36.19-.6.35-.74-1.21-.14-2.49-.61-2.49-2.71 0-.6.21-1.09.57-1.47-.06-.14-.25-.7.05-1.46 0 0 .47-.15 1.53.57.44-.12.92-.18 1.39-.18s.95.06 1.39.18c1.06-.72 1.53-.57 1.53-.57.3.76.11 1.32.05 1.46.36.38.57.87.57 1.47 0 2.11-1.28 2.57-2.5 2.71.2.17.37.51.37 1.02v1.52c0 .14.1.31.38.26C10.43 10.49 12 8.43 12 6 12 2.96 9.04.5 6 .5z"
-                                fill="currentColor" />
-                        </svg>
-                        GitHub
-                    </a>
-                </div>
-            </div>
-
-            <!-- Freelance Web Dev -->
             <div class="project-card reveal reveal-delay-1">
-                <div class="project-title">Freelance Web Dev — Lion Scott</div>
-                <p class="project-desc">Responsive websites built for real clients using HTML, CSS and JavaScript.
-                    Focused on UI/UX improvements, performance optimization, and cross-browser compatibility.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">UI/UX</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="project-link">GitHub</a>
-                </div>
+                <div class="project-title">Wine Dataset EDA</div>
+                <p class="project-desc">Deep-dive exploratory data analysis on the Vinho Verde Wine dataset. Documented methodology, visualisations, and statistical findings — published as a live interactive report.</p>
+                <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Seaborn</span><span class="tech-tag">Matplotlib</span><span class="tech-tag">EDA</span></div>
+                <div class="project-links"><a href="https://phantom1270.github.io/WineDatasetEDA/" target="_blank" rel="noopener noreferrer" class="project-link">↗ Live Report</a><a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="project-link">↗ GitHub</a></div>
             </div>
 
             <!-- More on GitHub -->
-            <div class="project-card reveal reveal-delay-2"
-                style="border-style: dashed; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; min-height:220px;">
+            <div class="project-card reveal reveal-delay-2" style="border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:220px;">
                 <div style="font-size:2rem;margin-bottom:12px">👾</div>
                 <div class="project-title" style="font-size:1.1rem">More on GitHub</div>
-                <p class="project-desc" style="font-size:0.85rem;margin-bottom:20px">Experiments, ML notebooks, and more
-                    vibe-coded projects living at Phantom1270.</p>
-                <a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="btn-primary"
-                    style="font-size:0.8rem;padding:10px 22px">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-                    </svg>
-                    @Phantom1270
-                </a>
+                <p class="project-desc" style="font-size:.85rem;margin-bottom:20px">ML notebooks, experiments, and more projects at Phantom1270.</p>
+                <a href="https://github.com/Phantom1270" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:.8rem;padding:10px 22px">@Phantom1270</a>
             </div>
         </div>
     </section>
 
     <!-- RADAR -->
     <section id="radar">
+        <span class="deco-shape" aria-hidden="true" style="top:8%;right:5%;font-size:2.8rem;color:#FF6B35;animation:float 7s ease-in-out infinite">🎯</span>
+        <span class="deco-shape" aria-hidden="true" style="bottom:12%;left:2%;font-size:2rem;color:#00F5D4;animation:wiggle 2.2s ease-in-out infinite">⚡</span>
+        <span class="deco-shape" aria-hidden="true" style="top:45%;right:2%;font-size:1.6rem;color:#FF3AF2;animation:bounce-subtle 3s ease-in-out infinite">✦</span>
         <div class="section-label reveal">learning</div>
         <div class="section-title reveal">What's On<br>My Radar</div>
         <div class="radar-layout">
@@ -521,7 +440,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="radar-sub reveal">"I'm in my second year — this is the phase of deliberate skill stacking."
+                <p class="radar-sub reveal">"I'm in my third year — this is the phase of deliberate skill stacking."</p>
                 </p>
             </div>
         </div>
@@ -529,38 +448,38 @@
 
     <!-- CONTACT -->
     <section id="contact">
+        <span class="deco-shape" aria-hidden="true" style="top:10%;left:3%;font-size:2.6rem;color:#FF3AF2;animation:float 6s ease-in-out infinite">💫</span>
+        <span class="deco-shape" aria-hidden="true" style="top:20%;right:4%;font-size:2rem;color:#FFE600;animation:wiggle 1.5s ease-in-out infinite">✨</span>
+        <span class="deco-shape" aria-hidden="true" style="bottom:15%;right:3%;font-size:2.4rem;color:#7B2FFF;animation:bounce-subtle 2.8s ease-in-out infinite">🚀</span>
+        <span class="deco-shape" aria-hidden="true" style="bottom:30%;left:2%;font-size:1.8rem;color:#00F5D4;animation:float-reverse 9s ease-in-out infinite">◆</span>
         <div class="section-label reveal">connect</div>
         <div class="section-title reveal">Let's Build<br>Something</div>
         <div class="contact-grid">
             <div class="contact-intro reveal">
                 <h3>Open to what's next.</h3>
-                <p>Whether it's a collaboration, internship, project idea, or just a conversation about AI — I'm here. I
-                    build fast and I think carefully. Let's make something real.</p>
+                <p>Whether it's a collaboration, internship, or a conversation about ML/AI engineering — I build fast and I think carefully. Let's make something real.</p>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/ujjwal-s1757/" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                         LinkedIn
                     </a>
                     <a href="https://github.com/Phantom1270" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
                         GitHub
                     </a>
                     <a href="mailto:shuklaujjwal.work@gmail.com" class="social-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                            <polyline points="22,6 12,13 2,6" />
-                        </svg>
-                        Email Me
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Email
+                    </a>
+                    <a href="https://ujjwalshukla.online" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        Website
+                    </a>
+                    <a href="tel:+919347913070" class="social-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.37 2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.97-1.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        +91 93479 13070
                     </a>
                 </div>
-            </div>
             <div class="reveal reveal-delay-2">
                 <div class="contact-form">
                     <div class="form-group">
@@ -585,7 +504,7 @@
     <!-- FOOTER -->
     <footer>
         <div class="footer-main">
-            <div class="footer-copy">Ujjwal Shukla © 2025</div>
+            <div class="footer-copy">Ujjwal Shukla © 2026</div>
             <div class="footer-monogram">US</div>
             <div class="footer-links">
                 <a href="#hero">Home</a>
@@ -606,9 +525,14 @@
         <p class="footer-tagline">Designed &amp; built with intent.</p>
     </footer>
 
-    <!-- Three.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="main.js"></script>
 </body>
 
 </html>
+
+
+
+
+
+
+

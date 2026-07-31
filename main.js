@@ -95,15 +95,16 @@ if (hamburger && navLinks) {
     }, { passive: true });
 }
 
-// ===== THREE.JS BACKGROUND =====
-(function initThreeJS() {
+// ===== THREE.JS BACKGROUND REMOVED — replaced with CSS maximalism background =====
+(function initThreeJS() { return; // Disabled — CSS hero-bg system handles visuals
+
     const canvas = document.getElementById('bg-canvas');
     if (!canvas || !window.THREE) return;
 
     // SCENE & SETUP
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000000);
-    scene.fog = new THREE.FogExp2(0x000000, 0.015);
+    scene.background = new THREE.Color(0x0D0D1A);
+    scene.fog = new THREE.FogExp2(0x0D0D1A, 0.015);
 
     const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.set(0, 15, 60);
@@ -411,14 +412,31 @@ setTimeout(type, 2800);
 const quoteStr = "I don't just study technology — I deploy it.";
 const qt = document.getElementById('quote-text');
 if (qt) {
-    quoteStr.split(' ').forEach((w, i) => {
+    const quoteWords = quoteStr.split(' ');
+    quoteWords.forEach((w, i) => {
         const span = document.createElement('span');
         span.className = 'word';
         const isAccent = w.includes('deploy');
         span.innerHTML = (isAccent ? `<span class="accent">${w}</span>` : w) + ' ';
-        span.style.transitionDelay = (i * 0.08) + 's';
+        // Use CSS animation-delay instead of transition-delay so gradient fires too
+        span.style.animationDelay = (0.6 + i * 0.09) + 's';
         qt.appendChild(span);
     });
+
+    // Trigger via IntersectionObserver (primary)
+    const qObs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+            document.querySelectorAll('#quote-text .word').forEach(w => w.classList.add('visible'));
+            qObs.disconnect();
+        }
+    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+    const qs = document.getElementById('quote');
+    if (qs) qObs.observe(qs);
+
+    // Fallback: ensure words always become visible after 2s regardless of scroll
+    setTimeout(() => {
+        document.querySelectorAll('#quote-text .word').forEach(w => w.classList.add('visible'));
+    }, 2000);
 }
 
 // ===== SCROLL REVEALS =====
@@ -426,39 +444,24 @@ const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
         if (e.isIntersecting) {
             e.target.classList.add('visible');
-            // Animate quote words
-            if (e.target.id === 'quote' || e.target.closest('#quote')) {
-                document.querySelectorAll('#quote-text .word').forEach(w => w.classList.add('visible'));
-            }
         }
     });
-}, { threshold: 0.15 });
-
+}, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Observe quote section specifically
-const quoteSection = document.getElementById('quote');
-if (quoteSection) {
-    const qObs = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) {
-            document.querySelectorAll('#quote-text .word').forEach(w => w.classList.add('visible'));
-        }
-    }, { threshold: 0.3 });
-    qObs.observe(quoteSection);
-}
 
 // ===== COUNTER ANIMATION =====
 function animateCounter(el) {
     const targetStr = el.getAttribute('data-target');
     const target = parseFloat(targetStr);
-    const isFloat = targetStr.includes('.');
+    const decimals = targetStr.includes('.') ? targetStr.split('.')[1].length : 0;
     let count = 0;
     const step = target / 40;
     const interval = setInterval(() => {
         count = Math.min(count + step, target);
-        el.textContent = isFloat ? count.toFixed(1) : Math.floor(count);
+        el.textContent = decimals > 0 ? count.toFixed(decimals) : Math.floor(count);
         if (count >= target) clearInterval(interval);
     }, 30);
+
 }
 const counterObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
